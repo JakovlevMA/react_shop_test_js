@@ -2,6 +2,7 @@ import './index.css'
 import React from "react";
 import FullProducts from './components/FullProducts'
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 class App extends React.Component{
   constructor (props) {
@@ -41,6 +42,7 @@ class App extends React.Component{
         <div>
           <Header/>
           <FullProducts products={this.state.products}/>
+          <Footer/>
         </div>
     )
   }

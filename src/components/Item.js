@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../index.css'
+import AddToCart from "./AddToCart";
 
 export class Item extends Component {
     render () {
@@ -9,8 +10,11 @@ export class Item extends Component {
                     <img src={this.props.products.image} alt="картинка футболки" className='img_product'/>
                     <h3 className='title_product'>{this.props.products.title}</h3>
                     <p className='price_product'>{this.props.products.price}</p>
+                    <AddToCart/>
                 </div>
+
             </div>
+
         );
     }
 }
