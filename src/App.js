@@ -43,6 +43,7 @@ class App extends React.Component{
           <Header/>
           <FullProducts products={this.state.products}/>
           <Footer/>
+
         </div>
     )
   }
