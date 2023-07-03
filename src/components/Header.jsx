@@ -1,8 +1,29 @@
 import React, {useState} from 'react';
 import '../index.css'
 import { FaShoppingBasket } from 'react-icons/fa';
+import Orders from "./Orders";
 
-const Header = () => {
+const showOrders = (props) => {
+    let sum = 0
+    props.orders.forEach(el => sum += Number.parseFloat(el.price))
+    return (
+        <div>
+            {props.orders.map(el => (
+                <Orders key={el.id} orders={el}/>
+            ))}
+            <p className='sum'>Сумма: {new Intl.NumberFormat().format(sum)}$</p>
+        </div>
+    )
+}
+const nothingOrders = () => {
+    return (
+        <div>
+            <h2>Товаров нет</h2>
+        </div>
+    )
+}
+
+const Header = (props) => {
     let [showOrder, setShowOrder] = useState(false)
     return (
         <header>
@@ -17,7 +38,8 @@ const Header = () => {
                 <FaShoppingBasket className={`btn_cart`} onClick={() => setShowOrder(showOrder = !showOrder)}/>
                     {showOrder && (
                         <div className='modal_cart_orders'>
-
+                            {props.orders.length > 0 ?
+                            showOrders(props) : nothingOrders()}
                         </div>
                     )}
             </div>

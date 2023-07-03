@@ -10,7 +10,8 @@ class App extends React.Component{
     this.state = {
       orders: [],
       currentItems: [],
-      products: [{
+      products: [
+          {
         category: 'T-shorts',
         image: 'https://winpix.ru/content/images/preview/photo%20souvenirs/t-shirt/futbolka-muszh-black.jpg',
         price: 2.99,
@@ -34,19 +35,38 @@ class App extends React.Component{
         id: 3,
         colour: 'Black',
         details: 'Данная куртка предназначена для сигма мужчин'
-      }]
+      }, {
+         category: 'hats',
+         image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThq18rOPXuxv5nGpd_QhuRvRYBMJ-lnfx_ag&usqp=CAU',
+         price: 19.99,
+         title: 'прикольная шляпа',
+         id: 4,
+         colour: 'Black',
+         details: 'Данная шляпа предназначена для сигма мужчин'
+        }
+      ]
     }
+      this.addToOrder = this.addToOrder.bind(this)
   }
   render () {
     return (
         <div>
-          <Header/>
-          <FullProducts products={this.state.products}/>
+          <Header orders={this.state.orders}/>
+          <FullProducts products={this.state.products} addToOrder={this.addToOrder}/>
           <Footer/>
-
         </div>
     )
   }
+    addToOrder (products) {
+        let isInArray = false
+        this.state.orders.forEach(el => {
+            if(el.id === products.id) {
+                isInArray = true
+            }
+        })
+        if(!isInArray)
+            this.setState({orders: [...this.state.orders, products]})
+    }
 }
 
 export default App;

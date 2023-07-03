@@ -7,7 +7,7 @@ export class FullProducts extends Component {
         return (
             <main>
                 {this.props.products.map(el => (
-                    <Item products={el} />
+                    <Item products={el} key={el.id} addToOrder={this.props.addToOrder}/>
                 ))}
             </main>
         );
